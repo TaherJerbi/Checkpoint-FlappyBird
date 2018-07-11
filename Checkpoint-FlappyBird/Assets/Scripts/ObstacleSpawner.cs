@@ -2,7 +2,6 @@
 
 public class ObstacleSpawner : MonoBehaviour {
     //Public varibles are editable from the inspector
-    public GameObject obstaclePrefab;
     public float minY;
     public float maxY;
     public float distance;
@@ -12,13 +11,10 @@ public class ObstacleSpawner : MonoBehaviour {
         {
             //Choose random Y position
             float obstacleY = Random.Range(minY, maxY);
-            //Destroy passed Obstacle
-            Destroy(col.gameObject);
-            //Choose a position for the new obstacle
+            //Calculate a position for the new obstacle
             Vector3 spawnPosition = new Vector3(transform.position.x + distance, obstacleY, 0);
-            //Instantiate the new obstacle
-            Instantiate(obstaclePrefab, spawnPosition , Quaternion.identity);
-            
+            //Move the obstacle to a new position
+            col.gameObject.transform.position = spawnPosition;
         }
     }
 }
